@@ -3,7 +3,7 @@ import os
 import sys
 import time
 from constants import RUN_A, RUN_B, RUN_SAMPLE_A, RUN_SAMPLE_B
-from days import day_1
+from days import day_1, day_2
 
 
 #######################################################################################################################
@@ -14,6 +14,12 @@ def __main__():
     # day_1.run(RUN_A)
     # # # # # # # # # # # #
     # day_1.run(RUN_B)
+    # # # # # # # # # # # #
+    # day_2.run(RUN_SAMPLE_A)
+    # # # # # # # # # # # #
+    # day_2.run(RUN_A)
+    # # # # # # # # # # # #
+    day_2.run(RUN_B)
     # # # # # # # # # # # #
     pass
 
