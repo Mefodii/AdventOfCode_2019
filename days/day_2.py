@@ -52,13 +52,3 @@ def run_b(input_data):
             result = calculate(split_data)
             if int(result) == desired_output:
                 return [100 * noun + verb]
-
-
-def run(data, run_type=""):
-    if run_type == RUN_A:
-        return run_a(data)
-    elif run_type == RUN_B:
-        return run_b(data)
-
-
-
