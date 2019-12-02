@@ -42,7 +42,6 @@ def run_a(input_data):
 
 def run_b(input_data):
     desired_output = 19690720
-    noun, verb = 0, 0
     for noun in range(100):
         for verb in range(100):
             split_data = input_data[0].split(",")
