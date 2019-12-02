@@ -13,6 +13,7 @@ OUTPUT_B_FILE = paths.get_file_for_day(paths.OUTPUT_TYPE_B, DAY)
 OUTPUT_SAMPLE_FILE = paths.get_file_for_day(paths.OUTPUT_SAMPLE_VAR, DAY)
 
 
+###############################################################################
 def run_a(input_data):
     return ""
 
