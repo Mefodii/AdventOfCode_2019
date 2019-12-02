@@ -7,10 +7,10 @@ DAY = 0
 ################
 
 INPUT_FILE = paths.get_file_for_day(paths.INPUT_TYPE, DAY)
-INPUT_SAMPLE_FILE = paths.get_file_for_day(paths.INPUT_SAMPLE_VAR, DAY)
+INPUT_SAMPLE_FILE = paths.get_file_for_day(paths.INPUT_SAMPLE_TYPE, DAY)
 OUTPUT_A_FILE = paths.get_file_for_day(paths.OUTPUT_TYPE_A, DAY)
 OUTPUT_B_FILE = paths.get_file_for_day(paths.OUTPUT_TYPE_B, DAY)
-OUTPUT_SAMPLE_FILE = paths.get_file_for_day(paths.OUTPUT_SAMPLE_VAR, DAY)
+OUTPUT_SAMPLE_FILE = paths.get_file_for_day(paths.OUTPUT_SAMPLE_TYPE, DAY)
 
 
 ###############################################################################
