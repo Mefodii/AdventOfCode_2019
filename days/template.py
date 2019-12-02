@@ -1,6 +1,3 @@
-from constants import RUN_A, RUN_B
-
-
 ###############################################################################
 def run_a(input_data):
     return ""

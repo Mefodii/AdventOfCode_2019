@@ -1,11 +1,11 @@
 import paths
-from constants import RUN_A, RUN_B
+from constants import PART_ONE, PART_TWO
 from utils.File import read_file, write_file
 from days import day_1, day_2
 
 DAYS = {
-    1: day_1.run,
-    2: day_2.run
+    1: day_1,
+    2: day_2,
 }
 
 
@@ -21,9 +21,9 @@ def get_io_files(day, part, sample):
 
     if not sample:
         input_file = input_a_file
-        if part == RUN_A:
+        if part == PART_ONE:
             output_file = output_a_file
-        elif part == RUN_B:
+        elif part == PART_TWO:
             output_file = output_b_file
 
     return [input_file, output_file]
@@ -32,7 +32,10 @@ def get_io_files(day, part, sample):
 def run(day, part, sample=False):
     input_file, output_file = get_io_files(day, part, sample)
 
-    output_data = DAYS[day](read_file(input_file), part)
+    if part == PART_ONE:
+        output_data = DAYS[day].run_a(read_file(input_file))
+    elif part == PART_TWO:
+        output_data = DAYS[day].run_b(read_file(input_file))
 
     write_file(output_file, output_data)
 

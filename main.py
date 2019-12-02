@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-from constants import RUN_A, RUN_B
+from constants import PART_TWO, PART_ONE
 from day_runner import run
 
 
@@ -10,13 +10,13 @@ from day_runner import run
 #######################################################################################################################
 def __main__():
     # # # # # # # # # #
-    # run(1, RUN_A)
+    # run(1, PART_ONE)
     # # # # # # # # # #
-    # run(1, RUN_B)
+    # run(1, PART_TWO)
     # # # # # # # # # #
-    # run(2, RUN_A)
+    # run(2, PART_ONE)
     # # # # # # # # # #
-    # run(2, RUN_B)
+    run(2, PART_TWO)
     # # # # # # # # # #
     pass
 

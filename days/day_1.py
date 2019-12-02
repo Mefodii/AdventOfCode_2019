@@ -1,6 +1,3 @@
-from constants import RUN_A, RUN_B
-
-
 def calculate_fuel(mass):
     return (mass // 3) - 2
 

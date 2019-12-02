@@ -1,2 +1,2 @@
-RUN_A = "A"
-RUN_B = "B"
+PART_ONE = "A"
+PART_TWO = "B"

@@ -1,5 +1,3 @@
-from constants import RUN_A, RUN_B
-
 ADD = 1
 MULTIPLY = 2
 END = 99
