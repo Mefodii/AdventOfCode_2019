@@ -1,4 +1,2 @@
-RUN_SAMPLE_A = "SA"
-RUN_SAMPLE_B = "SB"
 RUN_A = "A"
 RUN_B = "B"

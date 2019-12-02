@@ -1,26 +1,23 @@
-from __future__ import unicode_literals
 import os
 import sys
 import time
-from constants import RUN_A, RUN_B, RUN_SAMPLE_A, RUN_SAMPLE_B
-from days import day_1, day_2
+from constants import RUN_A, RUN_B
+from day_runner import run
 
 
 #######################################################################################################################
 # Main function
 #######################################################################################################################
 def __main__():
-    # # # # # # # # # # # #
-    # day_1.run(RUN_A)
-    # # # # # # # # # # # #
-    # day_1.run(RUN_B)
-    # # # # # # # # # # # #
-    # day_2.run(RUN_SAMPLE_A)
-    # # # # # # # # # # # #
-    # day_2.run(RUN_A)
-    # # # # # # # # # # # #
-    day_2.run(RUN_B)
-    # # # # # # # # # # # #
+    # # # # # # # # # #
+    # run(1, RUN_A)
+    # # # # # # # # # #
+    # run(1, RUN_B)
+    # # # # # # # # # #
+    # run(2, RUN_A)
+    # # # # # # # # # #
+    # run(2, RUN_B)
+    # # # # # # # # # #
     pass
 
 
