@@ -1,5 +1,3 @@
-from utils.File import write_file
-
 WIRE_ID = "ID"
 WIRE_DISTANCE = "DIST"
 
@@ -38,48 +36,22 @@ def plot_cell(cell, wire):
     return cell_result
 
 
-def plot_up(grid, distance, x, y, wire):
-    for i in range(distance):
-        y += 1
-        coords = f"{x},{y}"
-        grid[coords] = plot_cell(grid.get(coords, None), wire)
-
-    return [grid, x, y]
-
-
-def plot_down(grid, distance, x, y, wire):
-    for i in range(distance):
-        y -= 1
-        coords = f"{x},{y}"
-        grid[coords] = plot_cell(grid.get(coords, None), wire)
-
-    return [grid, x, y]
-
-
-def plot_left(grid, distance, x, y, wire):
-    for i in range(distance):
-        x -= 1
-        coords = f"{x},{y}"
-        grid[coords] = plot_cell(grid.get(coords, None), wire)
-
-    return [grid, x, y]
-
-
-def plot_right(grid, distance, x, y, wire):
-    for i in range(distance):
-        x += 1
-        coords = f"{x},{y}"
-        grid[coords] = plot_cell(grid.get(coords, None), wire)
-
-    return [grid, x, y]
-
-
-PLOTS = {
-    UP: plot_up,
-    DOWN: plot_down,
-    LEFT: plot_left,
-    RIGHT: plot_right,
+DIRECTIONS = {
+    UP: [0, 1],
+    DOWN: [0, -1],
+    LEFT: [-1, 0],
+    RIGHT: [1, 0],
 }
+
+
+def plot_direction(grid, direction, distance, x, y, wire):
+    for i in range(distance):
+        x += DIRECTIONS[direction][0]
+        y += DIRECTIONS[direction][1]
+        coords = f"{x},{y}"
+        grid[coords] = plot_cell(grid.get(coords, None), wire)
+
+    return [grid, x, y]
 
 
 def calculate_distance(x1, y1, x2, y2):
@@ -118,7 +90,7 @@ def plot_wire(grid, commands, wire):
         direction = command[0]
         distance = int(command[1:])
 
-        grid, grid_x, grid_y = PLOTS[direction](grid, distance, grid_x, grid_y, wire)
+        grid, grid_x, grid_y = plot_direction(grid, direction, distance, grid_x, grid_y, wire)
 
 
 def plot_grid(input_data):
