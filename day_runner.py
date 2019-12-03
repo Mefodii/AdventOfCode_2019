@@ -2,11 +2,16 @@ from paths import INPUT_FILES_PATH, OUTPUT_FILES_PATH
 from constants import PART_ONE, PART_TWO, FILE_TEMPLATES, DAY_TAG
 from constants import INPUT_TYPE, INPUT_SAMPLE_TYPE, OUTPUT_A_TYPE, OUTPUT_B_TYPE, OUTPUT_SAMPLE_TYPE
 from utils.File import read_file, write_file
-from days import day_1, day_2
+from days import day_1, day_2, day_3, day_4, day_5, day_6, day_7
 
 DAYS = {
     1: day_1,
     2: day_2,
+    3: day_3,
+    4: day_4,
+    5: day_5,
+    6: day_6,
+    7: day_7,
 }
 
 
