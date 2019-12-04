@@ -10,6 +10,7 @@ def run_b(input_data):
 
     keys = get_valid_keys(int(start), int(end))
     return [len(filter_adjacent(keys))]
+###############################################################################
 
 
 def get_ranges(data):
@@ -29,21 +30,23 @@ def filter_adjacent(keys):
     valid_keys = []
     for key in keys:
         adjacent_count = 0
-        prev_digit = -1
-        valid_key = True
+        prev_digit = ""
+        has_two_adjacent = False
         for digit in key:
-            if int(digit) == prev_digit:
+            if digit == prev_digit:
                 adjacent_count += 1
             else:
-                prev_digit = int(digit)
-                if adjacent_count > 1 and adjacent_count % 2 == 1:
-                    valid_key = False
+                if adjacent_count == 2:
+                    has_two_adjacent = True
+                prev_digit = digit
+                adjacent_count = 1
+        if adjacent_count == 2:
+            has_two_adjacent = True
 
-        if valid_key:
+        if has_two_adjacent:
             valid_keys.append(key)
 
     return valid_keys
-
 
 
 def is_valid_key(key):
