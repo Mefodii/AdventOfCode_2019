@@ -31,11 +31,12 @@ def calculate_system_orbits(system):
 
 
 def calculate_distance_to_santa(system):
-    path_to_me = set(calculate_path_to_obj([], COM, MY_LOCATION, system))
-    path_to_santa = set(calculate_path_to_obj([], COM, SANTA_LOCATION, system))
-
-    distance = len(path_to_me - path_to_santa) + len(path_to_santa - path_to_me) - 2
-    return distance
+    path_to_me = calculate_path_to_obj([], COM, MY_LOCATION, system)
+    path_to_santa = calculate_path_to_obj([], COM, SANTA_LOCATION, system)
+    for i in range(len(path_to_me)):
+        if not path_to_me[i] == path_to_santa[i]:
+            distance = len(path_to_me[i:-1]) + len(path_to_santa[i:-1])
+            return distance
 
 
 def calculate_path_to_obj(path, obj, target_obj, system):
