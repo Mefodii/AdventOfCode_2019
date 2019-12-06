@@ -36,17 +36,17 @@ def __main__():
     ###################
     # run(5, PART_TWO, True)
     # ###################
-    run(5, PART_ONE)
-    ###################
-    run(5, PART_TWO)
+    # run(5, PART_ONE)
+    # ###################
+    # run(5, PART_TWO)
     ###################
     # run(6, PART_ONE, True)
     ###################
-    # run(6, PART_TWO, True)
+    run(6, PART_TWO, True)
     # ###################
     # run(6, PART_ONE)
     ###################
-    # run(6, PART_TWO)
+    run(6, PART_TWO)
     ###################
     pass
 
