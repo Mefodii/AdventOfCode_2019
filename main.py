@@ -52,9 +52,25 @@ def __main__():
     ###################
     # run(7, PART_TWO, True)
     # ###################
-    run(7, PART_ONE)
+    # run(7, PART_ONE)
     ###################
-    run(7, PART_TWO)
+    # run(7, PART_TWO)
+    ###################
+    # run(8, PART_ONE, True)
+    ###################
+    # run(8, PART_TWO, True)
+    # ###################
+    run(8, PART_ONE)
+    ###################
+    run(8, PART_TWO)
+    ###################
+    # run(9, PART_ONE, True)
+    ###################
+    # run(9, PART_TWO, True)
+    # ###################
+    # run(9, PART_ONE)
+    ###################
+    # run(9, PART_TWO)
     ###################
     pass
 
