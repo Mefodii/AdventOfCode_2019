@@ -60,9 +60,9 @@ def __main__():
     ###################
     # run(8, PART_TWO, True)
     # ###################
-    run(8, PART_ONE)
+    # run(8, PART_ONE)
     ###################
-    run(8, PART_TWO)
+    # run(8, PART_TWO)
     ###################
     # run(9, PART_ONE, True)
     ###################
@@ -70,7 +70,7 @@ def __main__():
     # ###################
     # run(9, PART_ONE)
     ###################
-    # run(9, PART_TWO)
+    run(9, PART_TWO)
     ###################
     pass
 
