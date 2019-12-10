@@ -1,4 +1,5 @@
 import copy
+from math import gcd, atan2, degrees
 
 ASTEROID = "ASTEROID"
 FOV = "FOV"
@@ -20,17 +21,47 @@ def run_b(input_data):
     the_map = build_map(input_data)
     max_x = len(input_data[0])
     max_y = len(input_data)
+
     y, x, max_count = check_fov(the_map, max_x, max_y)
 
     y1, x1 = pulse_asteroids(y, x, the_map, 200, max_x, max_y)
 
-    return [max_count]
+    return [""]
+
+
+def angle(x1, y1, x2, y2):
+    value = degrees(atan2(y2-y1, x2-x1))
+    if value < 0:
+        value = 360 + value
+    value += 90
+    if value >= 360:
+        value -= 360
+
+    return value
 
 
 def pulse_asteroids(y, x, the_map, count, max_x, max_y):
-    asteroid = update_asteroid_fov(y, x, copy.deepcopy(the_map), max_x, max_y)
-    print(asteroid)
+    asteroid = None
+
+    current_scan_count = 0
+    while current_scan_count < 9:
+        asteroid = update_asteroid_fov(y, x, copy.deepcopy(the_map), max_x, max_y)
+
+        for row, value in asteroid[FOV].items():
+            for column, fow in value.items():
+                current_scan_count += 1
+
+        if current_scan_count < 9:
+            pulse(asteroid, the_map)
+
     return [0, 0]
+
+
+def pulse(asteroid, the_map):
+    for row, value in asteroid[FOV].items():
+        for column, fow in value.items():
+            print(row, column, the_map[row][column][ASTEROID])
+            the_map[row][column][ASTEROID] = False
 
 
 def check_fov(the_map, max_x, max_y):
@@ -57,21 +88,21 @@ def check_fov(the_map, max_x, max_y):
 
 def update_asteroid_fov(y, x, asteroids_map, max_x, max_y):
     def parse_fov(step_y, step_x):
-        asteroid_in_fov = False
+        asteroid_in_fov = None
 
         yy = y + step_y
         xx = x + step_x
         val = asteroids_map.get(yy, {}).get(xx, None)
-        if val[ASTEROID]:
-            asteroid_in_fov = True
+        if val[ASTEROID] and not val[BLOCKED]:
+            asteroid_in_fov = val
 
         yy += step_y
         xx += step_x
         val = asteroids_map.get(yy, {}).get(xx, None)
 
         while val:
-            if val[ASTEROID]:
-                asteroid_in_fov = True
+            if val[ASTEROID] and not val[BLOCKED]:
+                asteroid_in_fov = val
             val[BLOCKED] = True
             yy += step_y
             xx += step_x
@@ -98,11 +129,11 @@ def update_asteroid_fov(y, x, asteroids_map, max_x, max_y):
         for y1, x1 in coords:
             cell = asteroids_map.get(y1, {}).get(x1, None)
             if cell and (not cell[BLOCKED]):
-                if parse_fov(y1 - y, x1 - x):
+                result = parse_fov(y1 - y, x1 - x)
+                if result:
                     asteroid[COUNT] += 1
                     asteroid[FOV][y1] = asteroid[FOV].get(y1, {})
-                    asteroid[FOV][y1][x1] = cell
-                # mark_blocked(y1 - y, x1 - x)
+                    asteroid[FOV][y1][x1] = result
         dist += 1
 
     return asteroid
