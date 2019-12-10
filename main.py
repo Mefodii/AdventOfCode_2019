@@ -76,9 +76,9 @@ def __main__():
     ###################
     # run(10, PART_TWO, True)
     # ###################
-    # run(10, PART_ONE)
+    run(10, PART_ONE)
     ###################
-    run(10, PART_TWO)
+    # run(10, PART_TWO)
     ###################
     pass
 

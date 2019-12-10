@@ -12,7 +12,7 @@ def run_a(input_data):
     max_x = len(input_data[0])
     max_y = len(input_data)
     y, x, max_count = check_fov(the_map, max_x, max_y)
-
+    print(max_count)
     return [max_count]
 
 
@@ -30,7 +30,7 @@ def run_b(input_data):
 def pulse_asteroids(y, x, the_map, count, max_x, max_y):
     asteroid = update_asteroid_fov(y, x, copy.deepcopy(the_map), max_x, max_y)
     print(asteroid)
-    return []
+    return [0, 0]
 
 
 def check_fov(the_map, max_x, max_y):
@@ -56,29 +56,28 @@ def check_fov(the_map, max_x, max_y):
 
 
 def update_asteroid_fov(y, x, asteroids_map, max_x, max_y):
-    def mark_blocked(step_y, step_x):
-        yy = y + (2 * step_y)
-        xx = x + (2 * step_x)
+    def parse_fov(step_y, step_x):
+        asteroid_in_fov = False
+
+        yy = y + step_y
+        xx = x + step_x
         val = asteroids_map.get(yy, {}).get(xx, None)
+        if val[ASTEROID]:
+            asteroid_in_fov = True
+
+        yy += step_y
+        xx += step_x
+        val = asteroids_map.get(yy, {}).get(xx, None)
+
         while val:
+            if val[ASTEROID]:
+                asteroid_in_fov = True
             val[BLOCKED] = True
             yy += step_y
             xx += step_x
             val = asteroids_map.get(yy, {}).get(xx, None)
 
-    def asteroid_in_field(step_y, step_x):
-        yy = y + step_y
-        xx = x + step_x
-        val = asteroids_map.get(yy, {}).get(xx, None)
-        while val:
-            if val[ASTEROID]:
-                # val[BLOCKED] = True
-                return True
-            yy += step_y
-            xx += step_x
-            val = asteroids_map.get(yy, {}).get(xx, None)
-
-        return False
+        return asteroid_in_fov
 
     def build_coords(distance):
         width = distance * 2 + 1
@@ -99,11 +98,11 @@ def update_asteroid_fov(y, x, asteroids_map, max_x, max_y):
         for y1, x1 in coords:
             cell = asteroids_map.get(y1, {}).get(x1, None)
             if cell and (not cell[BLOCKED]):
-                if asteroid_in_field(y1 - y, x1 - x):
+                if parse_fov(y1 - y, x1 - x):
                     asteroid[COUNT] += 1
                     asteroid[FOV][y1] = asteroid[FOV].get(y1, {})
                     asteroid[FOV][y1][x1] = cell
-                mark_blocked(y1 - y, x1 - x)
+                # mark_blocked(y1 - y, x1 - x)
         dist += 1
 
     return asteroid
