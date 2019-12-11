@@ -56,8 +56,8 @@ def calculate_max_loop_thrust(data):
     min_phase = 5
     max_thrust = 0
 
-    phase_seq = [5 for i in range(5)]
-    # phase_seq = [9,7,8,5,6]
+    # phase_seq = [5 for i in range(5)]
+    phase_seq = [9,7,8,5,6]
 
     while not phase_seq[0] == 10:
         if len(set(phase_seq)) == 5:
@@ -67,6 +67,7 @@ def calculate_max_loop_thrust(data):
             all_thruster_data = [list(data) for i in range(5)]
             while not end_loop:
                 thrust_result = calculate_thrust(thrust, all_thruster_data, phase_seq, start_indexes)
+                # print(thrust_result)
                 end_loop = thrust_result["END"]
                 start_indexes = thrust_result["INDEXES"]
                 if not end_loop:
@@ -80,7 +81,7 @@ def calculate_max_loop_thrust(data):
                 phase_seq[i] = min_phase
                 phase_seq[i - 1] += 1
 
-        # phase_seq[0] = 10
+        phase_seq[0] = 10
 
     return max_thrust
 
@@ -93,6 +94,7 @@ def calculate_thrust(initial_thrust, all_thruster_data, phase_seq, start_indexes
     in_2 = initial_thrust
     i = 0
     for in_1 in phase_seq:
+        print(f"Amp {i}, input {in_2}")
         result = calculate([in_1, in_2], all_thruster_data[i], start_indexes[i])
         start_indexes[i] = result["INDEX"]
 
@@ -130,6 +132,7 @@ def calculate(inputs, data, start_index):
 
     while not end:
         operation, in_1_mode, in_2_mode, in_1, in_2, out = build_command(data[i:i+4])
+        # print("operation, in_1_mode, in_2_mode, in_1, in_2, out", data[i:i+4])
 
         if operation in [ADD, MULTIPLY, JIF, JIT, LT, EQ]:
             op_1 = in_1
