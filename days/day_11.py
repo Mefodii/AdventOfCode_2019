@@ -48,14 +48,45 @@ def run_b(input_data):
     split_data = input_data[0].split(",")
     extended_memory = ["0" for i in range(10000)]
 
-    result = calculate([2], list(split_data + extended_memory), 0)
-    print(result)
-    return [result["OUTPUT"][-1]]
+    panel = paint(WHITE, split_data + extended_memory)
+    show_painted(panel)
+    return [""]
 
 
 def count_unique_tiles(data):
+    panel = paint(BLACK, data)
+
+    panels = 0
+    for key, row in panel.items():
+        for column, value in row.items():
+            panels += 1
+
+    # print(panels)
+    return panels
+
+
+def show_painted(panel):
+    min_x, min_y, max_x, max_y = 0, 0, 0, 0
+    for key, row in panel.items():
+        for column, value in row.items():
+            min_x = min(column, min_x)
+            max_x = max(column, max_x)
+        min_y = min(key, min_y)
+        max_y = max(key, max_y)
+
+    for row in range(min_y, max_y + 1):
+        for column in range(min_x, max_x + 1):
+            tile = panel.get(row, {}).get(column, BLACK)
+            if tile == BLACK:
+                print(" ", end="")
+            else:
+                print("x", end="")
+        print()
+
+
+def paint(initial_tile, data):
     panel = {}
-    current_tile_color = BLACK
+    current_tile_color = initial_tile
     x, y = 0, 0
     direction = UP
     index = 0
@@ -65,6 +96,8 @@ def count_unique_tiles(data):
         result_tile_color = result["OUTPUT"][0]
         turn = result["OUTPUT"][1]
         index = result["INDEX"]
+        base = result["BASE"]
+
         panel[y] = panel.get(y, {})
         panel[y][x] = result_tile_color
 
@@ -72,16 +105,10 @@ def count_unique_tiles(data):
         x, y = move(x, y, direction)
         current_tile_color = panel.get(y, {}).get(x, BLACK)
 
-        print(result_tile_color, turn, direction, x, y)
-        result = calculate([current_tile_color], data, index)
+        # print(result_tile_color, turn, direction, x, y)
+        result = calculate([current_tile_color], data, index, base)
 
-    panels = 0
-    for key, row in panel.items():
-        for column, value in row.items():
-            panels += 1
-
-    print(panels)
-    return panels
+    return panel
 
 
 def move(x, y, direction):
@@ -115,9 +142,9 @@ def build_command(command_line):
     return commands
 
 
-def calculate(inputs, data, start_index):
+def calculate(inputs, data, start_index, base=0):
     i = start_index
-    relative_base = 0
+    relative_base = base
     end = False
     results = {"OUTPUT": [],
                "END": end}
@@ -186,6 +213,7 @@ def calculate(inputs, data, start_index):
 
             if len(results["OUTPUT"]) >= 2:
                 results["INDEX"] = i
+                results["BASE"] = relative_base
                 return results
         elif operation == ADJUST_RELATIVE_BASE:
             relative_base += op_1

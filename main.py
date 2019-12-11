@@ -84,9 +84,9 @@ def __main__():
     ###################
     # run(11, PART_TWO, True)
     # ###################
-    run(11, PART_ONE)
+    # run(11, PART_ONE)
     ###################
-    # run(11, PART_TWO)
+    run(11, PART_TWO)
     ###################
     pass
 
