@@ -13,25 +13,10 @@ POSITION_MODE = "0"
 IMMEDIATE_MODE = "1"
 RELATIVE_MODE = "2"
 
-BLACK = 0
-WHITE = 1
-
-UP = "U"
-DOWN = "D"
-LEFT = "L"
-RIGHT = "R"
-
-RIGHT_TURN = {UP: RIGHT,
-              RIGHT: DOWN,
-              DOWN: LEFT,
-              LEFT: UP}
-
-LEFT_TURN = {UP: LEFT,
-             LEFT: DOWN,
-             DOWN: RIGHT,
-             RIGHT: UP}
-
-TURNS = [LEFT_TURN, RIGHT_TURN]
+SCORE = -1
+BLOCK = 2
+PADDLE = 3
+BALL = 4
 
 
 ###############################################################################
@@ -42,14 +27,51 @@ def run_a(input_data):
     result = calculate([], split_data + extended_memory, 0)
     block_tiles = count_block_tiles(result)
     print(block_tiles)
-    return [result]
+    return [block_tiles]
 
 
 def run_b(input_data):
     split_data = input_data[0].split(",")
     extended_memory = ["0" for i in range(10000)]
 
-    return [""]
+    score = simulate(split_data + extended_memory)
+    return [score]
+
+
+def simulate(data):
+    entities = map_entities(calculate([], data, 0)["OUTPUT"])
+
+    data[0] = "2"
+    while entities[SCORE] == 0:
+        move = 0
+        if entities[PADDLE][0] > entities[BALL][0]:
+            move = -1
+        if entities[PADDLE][0] > entities[BALL][0]:
+            move = 1
+
+        result = calculate([move], data, 0)
+        entities = map_entities(result["OUTPUT"])
+        print(entities)
+
+    return entities[SCORE]
+
+
+def map_entities(data):
+    entities = {}
+    for i in range(0, len(data), 3):
+        line = data[i:i+3]
+        if line[0] == -1 and line[1] == 0:
+            entities[SCORE] = line[2]
+        elif line[2] == PADDLE:
+            entities[PADDLE] = [line[0], line[1]]
+        elif line[2] == BALL:
+            entities[BALL] = [line[0], line[1]]
+        elif line[2] == BLOCK:
+            entities[BLOCK] = entities.get(BLOCK, 0) + 1
+
+    entities[BLOCK] = entities.get(BLOCK, 0)
+    entities[SCORE] = entities.get(SCORE, 0)
+    return entities
 
 
 def count_block_tiles(intcode_result):
