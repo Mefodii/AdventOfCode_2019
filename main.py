@@ -9,100 +9,15 @@ from day_runner import run
 # Main function
 #######################################################################################################################
 def __main__():
+    day = 14
     ###################
-    # run(1, PART_ONE)
+    # run(day, PART_ONE, True)
     ###################
-    # run(1, PART_TWO)
-    ###################
-    # run(2, PART_ONE)
-    ###################
-    # run(2, PART_TWO)
-    ###################
-    # run(3, PART_ONE, True)
-    ###################
-    # run(3, PART_TWO, True)
-    ###################
-    # run(3, PART_ONE)
-    ###################
-    # run(3, PART_TWO)
-    ###################
-    # run(4, PART_ONE, True)
+    # run(day, PART_TWO, True)
     # ###################
-    # run(4, PART_ONE)
+    # run(day, PART_ONE)
     ###################
-    # run(4, PART_TWO)
-    ###################
-    # run(5, PART_ONE, True)
-    ###################
-    # run(5, PART_TWO, True)
-    # ###################
-    # run(5, PART_ONE)
-    # ###################
-    # run(5, PART_TWO)
-    ###################
-    # run(6, PART_ONE, True)
-    ###################
-    # run(6, PART_TWO, True)
-    # ###################
-    # run(6, PART_ONE)
-    ###################
-    # run(6, PART_TWO)
-    ###################
-    # run(7, PART_ONE, True)
-    ###################
-    # run(7, PART_TWO, True)
-    # ###################
-    # run(7, PART_ONE)
-    ###################
-    # run(7, PART_TWO)
-    ###################
-    # run(8, PART_ONE, True)
-    ###################
-    # run(8, PART_TWO, True)
-    # ###################
-    # run(8, PART_ONE)
-    ###################
-    # run(8, PART_TWO)
-    ###################
-    # run(9, PART_ONE, True)
-    ###################
-    # run(9, PART_TWO, True)
-    # ###################
-    # run(9, PART_ONE)
-    ###################
-    # run(9, PART_TWO)
-    ###################
-    # run(10, PART_ONE, True)
-    ###################
-    # run(10, PART_TWO, True)
-    # ###################
-    # run(10, PART_ONE)
-    ###################
-    # run(10, PART_TWO)
-    ###################
-    # run(11, PART_ONE, True)
-    ###################
-    # run(11, PART_TWO, True)
-    # ###################
-    # run(11, PART_ONE)
-    ###################
-    # run(11, PART_TWO)
-    ###################
-    # run(12, PART_ONE, True)
-    ###################
-    # run(12, PART_TWO, True)
-    # ###################
-    # run(12, PART_ONE)
-    ###################
-    # run(12, PART_TWO)
-    ###################
-    # run(13, PART_ONE, True)
-    ###################
-    # run(13, PART_TWO, True)
-    # ###################
-    run(13, PART_ONE)
-    ###################
-    # run(13, PART_TWO)
+    run(day, PART_TWO)
     ###################
     pass
 
